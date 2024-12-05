@@ -5,11 +5,14 @@ import HomePage from '@pages/Home'
 import TestPage from '@pages/Test'
 import CardPage from '@pages/Card'
 import ApplyPage from '@pages/Apply'
+import ApplyDone from '@pages/ApplyDone'
+import MyPage from '@pages/My'
 
 import SignupPage from '@pages/Signup'
 import SigninPage from '@pages/Signin'
 import Navbar from '@shared/Navbar'
 import PrivateRoute from '@components/auth/PrivateRoute'
+import { Suspense } from 'react'
 
 function App() {
   return (
@@ -26,7 +29,25 @@ function App() {
           path="/apply/:id"
           element={
             <PrivateRoute>
-              <ApplyPage />
+              <Suspense fallback={<></>}>
+                <ApplyPage />
+              </Suspense>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/apply/done"
+          element={
+            <PrivateRoute>
+              <ApplyDone />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/my"
+          element={
+            <PrivateRoute>
+              <MyPage />
             </PrivateRoute>
           }
         />
